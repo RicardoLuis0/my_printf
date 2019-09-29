@@ -39,7 +39,6 @@ struct param_data{
 param_data parse_param(size_t &index,const std::string & fmt){
     param_data out {};
     if(fmt[index]=='%'){//percent escape
-        index++;
         out.valid=true;
         out.escape=true;
         return out;
@@ -95,7 +94,6 @@ param_data parse_param(size_t &index,const std::string & fmt){
             index+=count;
         }
         if(fmt[index]=='}'){
-            index++;
             out.valid=true;
             return out;//TODO
         }
@@ -105,10 +103,6 @@ param_data parse_param(size_t &index,const std::string & fmt){
 }
 
 void format_stream(param_data p,std::ostringstream &o){
-    if(p.has_size){
-        o<<std::setw(p.size);
-        o<<std::setfill(p.pad_zero?'0':' ');
-    }
     if(p.has_precision){
         o<<std::setprecision(p.precision);
     }
@@ -128,6 +122,10 @@ void format_stream(param_data p,std::ostringstream &o){
     case PARAM_LE:
         o<<std::scientific;
         break;
+    }
+    if(p.has_size){
+        o<<std::setfill(p.pad_zero?'0':' ');
+        o<<std::setw(p.size);
     }
 }
 
