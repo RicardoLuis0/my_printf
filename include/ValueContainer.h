@@ -20,7 +20,7 @@ namespace My {
     std::shared_ptr<ValueContainer> as_vcp(uint32_t);
     std::shared_ptr<ValueContainer> as_vcp(int64_t);
     std::shared_ptr<ValueContainer> as_vcp(uint64_t);
-    std::shared_ptr<ValueContainer> as_vcp(std::string);
+    std::shared_ptr<ValueContainer> as_vcp(const std::string &);
     std::shared_ptr<ValueContainer> as_vcp(const char *);
     std::shared_ptr<ValueContainer> as_vcp(void *);
     class Int8Container : public ValueContainer {

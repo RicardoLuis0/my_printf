@@ -35,7 +35,7 @@ std::shared_ptr<ValueContainer> My::as_vcp(int64_t i){
 std::shared_ptr<ValueContainer> My::as_vcp(uint64_t u){
     return std::make_shared<UInt64ContainerImpl>(u);
 }
-std::shared_ptr<ValueContainer> My::as_vcp(std::string s){
+std::shared_ptr<ValueContainer> My::as_vcp(const std::string &s){
     return std::make_shared<StringContainerImpl>(s);
 }
 std::shared_ptr<ValueContainer> My::as_vcp(const char * s){

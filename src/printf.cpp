@@ -82,8 +82,10 @@ param_data parse_param(size_t &index,const std::string & fmt){
         break;
     case '{':
         out.type=PARAM_NONE;
+        index--;
         break;
     }
+    index++;
     if(fmt[index]=='{'){
         index++;
         size_t count=0;
