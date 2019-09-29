@@ -1,0 +1,9 @@
+*.save
+obj/
+bin/
+doxygen/
+*.depend
+*.layout
+*.bak
+.vscode/
+*.cscope_file_list
