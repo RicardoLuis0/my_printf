@@ -131,6 +131,17 @@ void format_stream(param_data p,std::ostringstream &o){
     }
 }
 
+#define FMT_INT(_V,_T,_C)\
+}else if(auto _V=std::dynamic_pointer_cast<_C>(args[p.index])){\
+        if(p.type==PARAM_C){\
+            return std::string(1,(unsigned char)_V->_T());\
+        }else{\
+            std::ostringstream fmt;\
+            format_stream(p,fmt);\
+            fmt<<_V->_T();\
+            return fmt.str();\
+        }
+
 std::string format_param(param_data p,std::vector<std::shared_ptr<ValueContainer>> &args){
     if(p.escape)return "%";
     if(auto s=std::dynamic_pointer_cast<StringContainer>(args[p.index])){
@@ -165,78 +176,16 @@ std::string format_param(param_data p,std::vector<std::shared_ptr<ValueContainer
         format_stream(p,fmt);
         fmt<<d->getDouble();
         return fmt.str();
-    }else if(auto i8=std::dynamic_pointer_cast<Int8Container>(args[p.index])){
-        if(p.type==PARAM_C){
-            return std::string(1,(char)i8->getInt8());
-        }else{
-            std::ostringstream fmt;
-            format_stream(p,fmt);
-            fmt<<i8->getInt8();
-            return fmt.str();
-        }
-    }else if(auto ui8=std::dynamic_pointer_cast<UInt8Container>(args[p.index])){
-        if(p.type==PARAM_C){
-            return std::string(1,(unsigned char)ui8->getUInt8());
-        }else{
-            std::ostringstream fmt;
-            format_stream(p,fmt);
-            fmt<<ui8->getUInt8();
-            return fmt.str();
-        }
-    }else if(auto i16=std::dynamic_pointer_cast<Int16Container>(args[p.index])){
-        if(p.type==PARAM_C){
-            return std::string(1,(char)i16->getInt16());
-        }else{
-            std::ostringstream fmt;
-            format_stream(p,fmt);
-            fmt<<i16->getInt16();
-            return fmt.str();
-        }
-    }else if(auto ui16=std::dynamic_pointer_cast<UInt16Container>(args[p.index])){
-        if(p.type==PARAM_C){
-            return std::string(1,(unsigned char)ui16->getUInt16());
-        }else{
-            std::ostringstream fmt;
-            format_stream(p,fmt);
-            fmt<<ui16->getUInt16();
-            return fmt.str();
-        }
-    }else if(auto i32=std::dynamic_pointer_cast<Int32Container>(args[p.index])){
-        if(p.type==PARAM_C){
-            return std::string(1,(char)i32->getInt32());
-        }else{
-            std::ostringstream fmt;
-            format_stream(p,fmt);
-            fmt<<i32->getInt32();
-            return fmt.str();
-        }
-    }else if(auto ui32=std::dynamic_pointer_cast<UInt32Container>(args[p.index])){
-        if(p.type==PARAM_C){
-            return std::string(1,(unsigned char)ui32->getUInt32());
-        }else{
-            std::ostringstream fmt;
-            format_stream(p,fmt);
-            fmt<<ui32->getUInt32();
-            return fmt.str();
-        }
-    }else if(auto i64=std::dynamic_pointer_cast<Int64Container>(args[p.index])){
-        if(p.type==PARAM_C){
-            return std::string(1,(char)i64->getInt64());
-        }else{
-            std::ostringstream fmt;
-            format_stream(p,fmt);
-            fmt<<i64->getInt64();
-            return fmt.str();
-        }
-    }else if(auto ui64=std::dynamic_pointer_cast<UInt64Container>(args[p.index])){
-        if(p.type==PARAM_C){
-            return std::string(1,(unsigned char)ui64->getUInt64());
-        }else{
-            std::ostringstream fmt;
-            format_stream(p,fmt);
-            fmt<<ui64->getUInt64();
-            return fmt.str();
-        }
+
+FMT_INT(i8,getInt8,Int8Container)
+FMT_INT(ui8,getUInt8,UInt8Container)
+FMT_INT(i16,getInt16,Int16Container)
+FMT_INT(ui16,getUInt16,UInt16Container)
+FMT_INT(i32,getInt32,Int32Container)
+FMT_INT(ui32,getUInt32,UInt32Container)
+FMT_INT(i64,getInt64,Int64Container)
+FMT_INT(ui64,getUInt64,UInt64Container)
+
     }else if(auto vp=std::dynamic_pointer_cast<PointerContainer>(args[p.index])){
         std::ostringstream fmt;
         fmt<<vp->getPointer();
