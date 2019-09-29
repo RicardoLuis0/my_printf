@@ -10,6 +10,8 @@ namespace My {
         virtual void dummy();
     };
     std::shared_ptr<ValueContainer> as_vcp(std::shared_ptr<ValueContainer>);
+    std::shared_ptr<ValueContainer> as_vcp(float);
+    std::shared_ptr<ValueContainer> as_vcp(double);
     std::shared_ptr<ValueContainer> as_vcp(int8_t);
     std::shared_ptr<ValueContainer> as_vcp(uint8_t);
     std::shared_ptr<ValueContainer> as_vcp(int16_t);
@@ -72,6 +74,18 @@ namespace My {
     class PointerContainer : public ValueContainer {
     public:
         virtual const void * getPointer()=0;
+    };
+    class FloatContainerImpl : public FloatContainer {
+        float f;
+    public:
+        FloatContainerImpl(float);
+        virtual float getFloat() override;
+    };
+    class DoubleContainerImpl : public DoubleContainer {
+        double d;
+    public:
+        DoubleContainerImpl(double);
+        virtual double getDouble() override;
     };
     class Int8ContainerImpl : public Int8Container {
         int8_t i8;

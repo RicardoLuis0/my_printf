@@ -16,7 +16,8 @@ namespace My{
                     number, max characters to print, if preceded by 0 and a number fill missing characters with 0, else fill with spaces, leading zero ignored if non-numeric
                 precision:
                     number, precision for floating point numbers, ignored if non-floating point
-                type 'c': print number as character (casted to char), ignored if non-numeric
+                type 'c': print number as character (casted to char or unsigned char), ignored if non-integral
+                type 'f': print number as fixed floating point, ignored if non-floating point
                 type 'x': print nubmer as hex, ignored if non-numeric
                 type 'X': print nubmer as uppercase hex, ignored if non-numeric
                 type 'e': print number as lowercase scientific notation, ignored if non-numeric

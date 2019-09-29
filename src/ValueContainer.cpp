@@ -5,6 +5,12 @@ using namespace My;
 std::shared_ptr<ValueContainer> My::as_vcp(std::shared_ptr<ValueContainer> p){
     return p;
 }
+std::shared_ptr<ValueContainer> My::as_vcp(float f){
+    return std::make_shared<FloatContainerImpl>(f);
+}
+std::shared_ptr<ValueContainer> My::as_vcp(double d){
+    return std::make_shared<DoubleContainerImpl>(d);
+}
 std::shared_ptr<ValueContainer> My::as_vcp(int8_t i){
     return std::make_shared<Int8ContainerImpl>(i);
 }
@@ -41,6 +47,22 @@ std::shared_ptr<ValueContainer> My::as_vcp(void * p){
 
 void ValueContainer::dummy(){
     //DO NOTHING
+}
+
+FloatContainerImpl::FloatContainerImpl(float f2):f(f2){
+    
+}
+
+float FloatContainerImpl::getFloat(){
+    return f;
+}
+
+DoubleContainerImpl::DoubleContainerImpl(double d2):d(d2){
+    
+}
+
+double DoubleContainerImpl::getDouble(){
+    return d;
 }
 
 Int8ContainerImpl::Int8ContainerImpl(int8_t i):i8(i){
