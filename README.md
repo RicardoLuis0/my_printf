@@ -2,7 +2,7 @@
 
 Made for use with my [Interpreter](https://www.github.com/RicardoLuis0/Interpreter)
 
-#### usage
+## Usage
 
 * parameter format: `%[length][.precision][type]{position}`
     * %% is escape for percent
