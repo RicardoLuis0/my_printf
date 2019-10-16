@@ -6,7 +6,7 @@ Made for use with my [Interpreter](https://www.github.com/RicardoLuis0/Interpret
 
 * parameter format: `%[length][.precision][type]{position}`
 
-    * %% is escape for percent
+    * `%%` is escape for percent
 
     * length: number, length to print, ignored if non-string
 
